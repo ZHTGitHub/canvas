@@ -31,6 +31,27 @@
 
     }
 
+    Stars.prototype.move = function() {
+
+        this.y -= .2
+
+        if(this.y < -10) {
+            this.y = canvasH + 10
+        }
+
+        this.draw()
+
+    }
+
+    function animate() {
+        context.clearRect(0, 0, canvasW, canvasH)
+
+        for (var i in star) {
+            star[i].move()
+        }
+        requestAnimationFrame(animate)
+    }
+
     function init() {
 
         for(let i = 0; i < amount; i++) {
@@ -39,6 +60,8 @@
             star[i].draw()
 
         }
+
+        animate()
 
     }
 
