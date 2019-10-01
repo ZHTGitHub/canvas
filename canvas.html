@@ -6,16 +6,60 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>使用 Canvas 制作出炫酷的网页背景特效</title>
+        <title>使用Canvas制作出炫酷的网页背景特效</title>
         <link rel="stylesheet" href="./canvas.css">
 
     </head>
 
+    <style type="text/css">
+
+        button {
+
+            position: absolute;
+            padding: 5px 15px;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%)
+
+        }
+
+    </style>
+
     <body>
+
+        <button id="btn" onclick="_switch()">跟随鼠标移动</button>
         
         <canvas id="canvas" width="400" height="400"></canvas>
 
+
+        <script type="text/javascript">
+
+            var mouse = false
+
+            function _switch() {
+
+                mouse = !mouse
+
+                // create script
+                var script = document.createElement('script')
+                script.type = 'text/javascript'
+                script.src = mouse ? './interaction.js' : './canvas.js'
+                document.body.append(script)
+                
+                // remove script
+                var first = document.getElementsByTagName('script')[1]
+                document.body.removeChild(first)
+
+                // change text
+                var btn = document.getElementById('btn')
+                btn.innerHTML = mouse ? '随机粒子' : '跟随鼠标移动'
+
+            }
+
+        </script>
+
         <script type="text/javascript" src="./canvas.js"></script>
+        
     </body>
 
 </html>
